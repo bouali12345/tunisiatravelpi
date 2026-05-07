@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>تونس السياحية | Tunisia Tourism | Tunisie Tourisme</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<script>
+  window.addEventListener('load', function() {
+    Pi.init({ version: "2.0", sandbox: false });
+    Pi.authenticate(['username', 'payments'], function(payment) {})
+      .then(function(auth) {
+        if (auth && auth.user) {
+          document.getElementById('pi-user-name').textContent = 'π ' + auth.user.username;
+        }
+      }).catch(function(e) {});
+  });
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C1272D; --gold:#C9A84C; --gold2:#F0D080;
+  --deep:#0D0800; --card:#17100A; --card2:#1E1508;
+  --pi:#7C3AED; --pi2:#A855F7; --pi3:#C084FC;
+  --teal:#0D9488; --white:#FDF8F0;
+  --muted:rgba(253,248,240,0.5); --border:rgba(201,168,76,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+button{cursor:pointer;font-family:'Cairo',sans-serif;}
+
+/* TOPBAR */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(13,8,0,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.65rem 1rem;gap:.5rem;
+}
+.brand{display:flex;align-items:center;gap:.5rem;}
+.brand-icon{font-size:1.5rem;}
+.brand-name{font-family:'Amiri',serif;font-size:1.05rem;color:var(--gold);line-height:1;}
+.brand-sub{font-size:.65rem;color:var(--muted);letter-spacing:1px;}
+.topbar-right{display:flex;align-items:center;gap:.5rem;}
+.pi-chip{
+  background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);
+  border-radius:20px;padding:.3rem .85rem;
+  font-size:.78rem;color:var(--pi3);
+  display:flex;align-items:center;gap:.35rem;
+}
+.pi-dot{width:6px;height:6px;background:var(--pi3);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* LANGUAGE SWITCHER */
+.lang-switcher{display:flex;gap:.25rem;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:.2rem;}
+.lang-btn{background:none;border:none;color:var(--muted);padding:.18rem .5rem;border-radius:14px;font-size:.7rem;font-weight:700;transition:all .2s;letter-spacing:.5px;}
+.lang-btn.active{background:var(--gold);color:#000;}
+.lang-btn:hover:not(.active){color:var(--white);}
+
+/* HERO */
+.hero{
+  position:relative;min-height:88vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:2rem 1.5rem 4rem;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 100%,rgba(193,39,45,.22) 0%,transparent 65%),
+    radial-gradient(ellipse 70% 50% at 10% 0%,rgba(13,148,136,.15) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%,rgba(201,168,76,.1) 0%,transparent 50%),
+    linear-gradient(170deg,#0D1520 0%,#0D0800 60%,#130500 100%);
+}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.s{position:absolute;background:#fff;border-radius:50%;animation:tw var(--d) ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.1;}50%{opacity:.85;}}
+.moon{position:absolute;top:8%;right:8%;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff8e0,#e8c96d);box-shadow:0 0 30px rgba(232,201,109,.4),0 0 80px rgba(232,201,109,.15);}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);color:var(--gold);padding:.35rem 1.1rem;border-radius:30px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.6rem;animation:fd .8s ease both;}
+@keyframes fd{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:none;}}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2.8rem,9vw,5.5rem);font-weight:700;line-height:1;animation:fd .8s .15s ease both;text-shadow:0 6px 40px rgba(0,0,0,.5);}
+.hero h1 .r{color:var(--red);}
+.hero h1 .g{color:var(--gold);}
+.hero-sub{color:var(--muted);font-size:.95rem;font-weight:300;margin-top:.9rem;animation:fd .8s .3s ease both;}
+.hero-actions{display:flex;gap:.9rem;margin-top:2.2rem;flex-wrap:wrap;justify-content:center;animation:fd .8s .45s ease both;}
+.btn-primary{background:linear-gradient(135deg,var(--red),#8B0000);border:none;color:#fff;padding:.85rem 2rem;border-radius:50px;font-size:.95rem;font-weight:700;transition:all .2s;box-shadow:0 4px 20px rgba(193,39,45,.35);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-ghost{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);color:var(--gold);padding:.85rem 2rem;border-radius:50px;font-size:.95rem;font-weight:600;transition:all .2s;}
+.btn-ghost:hover{background:rgba(201,168,76,.2);}
+.stats-row{display:flex;gap:0;margin-top:3rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;overflow:hidden;animation:fd .8s .6s ease both;width:100%;max-width:420px;}
+.stat-box{flex:1;padding:.9rem .5rem;text-align:center;border-left:1px solid var(--border);}
+.stat-box:last-child{border-left:none;}
+.stat-n{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold);display:block;line-height:1;}
+.stat-l{font-size:.65rem;color:var(--muted);letter-spacing:.5px;margin-top:.2rem;}
+
+/* NAV TABS */
+.nav-tabs{position:sticky;top:53px;z-index:150;background:rgba(13,8,0,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 .5rem;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;background:none;border:none;color:var(--muted);padding:.85rem 1.1rem;font-size:.82rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:.35rem;white-space:nowrap;}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab-btn:hover{color:var(--white);}
+
+/* SECTIONS */
+.section{display:none;padding:1.5rem 1rem 2rem;max-width:700px;margin:0 auto;}
+.section.active{display:block;}
+.sec-title{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.4rem;}
+.sec-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;}
+
+/* REGION CHIPS */
+.region-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.r-chip{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:.35rem .9rem;font-size:.78rem;color:var(--muted);cursor:pointer;transition:all .2s;}
+.r-chip.active,.r-chip:hover{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:var(--gold);}
+
+/* HOTELS */
+.hotels-grid{display:flex;flex-direction:column;gap:1rem;}
+.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .25s;}
+.hotel-card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.3);}
+.hotel-img{height:155px;background:linear-gradient(135deg,var(--card2),#0D1520);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
+.hotel-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.5));}
+.hotel-region-tag{position:absolute;top:.7rem;right:.7rem;z-index:1;background:rgba(13,8,0,.75);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:20px;padding:.2rem .65rem;font-size:.67rem;color:var(--gold);}
+.hotel-stars-tag{position:absolute;top:.7rem;left:.7rem;z-index:1;background:rgba(193,39,45,.8);border-radius:20px;padding:.2rem .65rem;font-size:.67rem;color:#fff;}
+.hotel-body{padding:1rem;}
+.hotel-name{font-family:'Amiri',serif;font-size:1.15rem;color:var(--white);margin-bottom:.35rem;}
+.hotel-loc{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:.3rem;margin-bottom:.6rem;}
+.hotel-features{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem;}
+.feat-tag{background:rgba(13,148,136,.12);border:1px solid rgba(13,148,136,.25);border-radius:8px;padding:.18rem .55rem;font-size:.68rem;color:#5eead4;}
+.hotel-footer{display:flex;align-items:center;justify-content:space-between;}
+.hotel-price{display:flex;flex-direction:column;}
+.price-pi{font-size:1.2rem;font-weight:700;color:var(--pi3);}
+.price-pi span{font-size:.7rem;font-weight:400;color:var(--muted);}
+.price-usd{font-size:.7rem;color:var(--muted);}
+.hotel-phone{display:flex;align-items:center;gap:.35rem;background:rgba(13,148,136,.12);border:1px solid rgba(13,148,136,.25);border-radius:20px;padding:.4rem .9rem;font-size:.78rem;color:#5eead4;text-decoration:none;transition:all .2s;}
+.btn-book{background:linear-gradient(135deg,var(--pi),var(--pi2));border:none;color:#fff;padding:.5rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:700;transition:all .2s;box-shadow:0 2px 12px rgba(124,58,237,.3);}
+.btn-book:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(124,58,237,.5);}
+
+/* ATTRACTIONS */
+.attr-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.attr-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .2s;}
+.attr-card:hover{border-color:rgba(201,168,76,.35);}
+.attr-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--card2),#0D1520);}
+.attr-body{padding:.7rem;}
+.attr-name{font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.2rem;}
+.attr-loc{font-size:.7rem;color:var(--muted);}
+.attr-type{display:inline-block;margin-top:.4rem;font-size:.65rem;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:.15rem .5rem;color:var(--gold);}
+
+/* RESTAURANTS */
+.resto-list{display:flex;flex-direction:column;gap:.8rem;}
+.resto-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;display:flex;align-items:center;gap:.9rem;transition:all .2s;}
+.resto-card:hover{border-color:rgba(201,168,76,.3);}
+.resto-icon{width:54px;height:54px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;}
+.resto-info{flex:1;}
+.resto-name{font-weight:700;font-size:.92rem;margin-bottom:.2rem;}
+.resto-detail{font-size:.73rem;color:var(--muted);}
+.resto-pi{font-size:.78rem;color:var(--pi3);font-weight:600;margin-top:.3rem;}
+.resto-call{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:.4rem .7rem;font-size:.72rem;color:var(--gold);text-decoration:none;flex-shrink:0;}
+
+/* TRANSPORT */
+.transport-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.trans-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;text-align:center;transition:all .2s;}
+.trans-card:hover{border-color:rgba(201,168,76,.3);}
+.trans-icon{font-size:2rem;margin-bottom:.5rem;}
+.trans-name{font-weight:700;font-size:.88rem;margin-bottom:.3rem;}
+.trans-info{font-size:.72rem;color:var(--muted);margin-bottom:.5rem;}
+.trans-pi{font-size:.82rem;color:var(--pi3);font-weight:600;}
+
+/* WEATHER */
+.weather-bar{background:linear-gradient(135deg,rgba(13,148,136,.15),rgba(13,148,136,.05));border:1px solid rgba(13,148,136,.25);border-radius:16px;padding:1rem 1.2rem;margin-bottom:1.3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;}
+.weather-city{font-weight:700;font-size:.9rem;}
+.weather-temp{font-family:'Amiri',serif;font-size:2rem;color:var(--gold);}
+.weather-info{font-size:.75rem;color:var(--muted);}
+.weather-cities{display:flex;gap:.6rem;flex-wrap:wrap;}
+.wcity-btn{background:rgba(13,148,136,.1);border:1px solid rgba(13,148,136,.2);border-radius:20px;padding:.25rem .7rem;font-size:.72rem;color:#5eead4;cursor:pointer;transition:all .2s;}
+.wcity-btn.active,.wcity-btn:hover{background:rgba(13,148,136,.25);}
+
+/* EMERGENCY */
+.emg-list{display:flex;flex-direction:column;gap:.7rem;}
+.emg-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.9rem 1rem;display:flex;align-items:center;gap:.9rem;}
+.emg-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.emg-icon.red{background:rgba(193,39,45,.2);}
+.emg-icon.blue{background:rgba(59,130,246,.2);}
+.emg-icon.green{background:rgba(16,185,129,.2);}
+.emg-icon.orange{background:rgba(245,158,11,.2);}
+.emg-info{flex:1;}
+.emg-name{font-weight:700;font-size:.9rem;}
+.emg-sub{font-size:.72rem;color:var(--muted);}
+.emg-num{font-size:1.05rem;font-weight:900;color:var(--red);text-decoration:none;font-family:'Amiri',serif;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border-top:1px solid var(--border);border-radius:24px 24px 0 0;width:100%;max-width:700px;padding:1.5rem 1.3rem 2.5rem;animation:slideUp .3s ease;max-height:90vh;overflow-y:auto;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 1.2rem;}
+.modal-title{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold);margin-bottom:.3rem;}
+.modal-hotel{font-size:.85rem;color:var(--muted);margin-bottom:1.3rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.form-group{margin-bottom:1rem;}
+.form-label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.4rem;}
+.form-input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;color:var(--white);font-family:'Cairo',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:rgba(201,168,76,.4);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.nights-display{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:10px;padding:.7rem 1rem;text-align:center;}
+.nights-n{font-size:1.4rem;font-weight:900;color:var(--pi3);}
+.nights-l{font-size:.7rem;color:var(--muted);}
+.total-box{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(168,85,247,.1));border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:1.1rem 1.2rem;margin:1.2rem 0;}
+.total-row{display:flex;justify-content:space-between;align-items:center;}
+.total-label{font-size:.82rem;color:var(--muted);}
+.total-val{font-size:1.5rem;font-weight:900;color:var(--pi3);}
+.total-usd{font-size:.72rem;color:var(--muted);margin-top:.2rem;}
+.btn-pay{width:100%;background:linear-gradient(135deg,var(--pi),var(--pi2));border:none;color:#fff;padding:1rem;border-radius:14px;font-size:1rem;font-weight:800;box-shadow:0 4px 20px rgba(124,58,237,.4);transition:all .2s;}
+.btn-pay:hover{transform:translateY(-2px);}
+.btn-cancel-modal{width:100%;background:none;border:1px solid var(--border);color:var(--muted);padding:.75rem;border-radius:14px;font-size:.88rem;margin-top:.6rem;transition:all .2s;}
+.btn-cancel-modal:hover{border-color:rgba(201,168,76,.3);color:var(--white);}
+
+.paying-overlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.paying-overlay.open{display:flex;}
+.paying-spinner{width:70px;height:70px;border-radius:50%;border:3px solid rgba(124,58,237,.2);border-top-color:var(--pi2);animation:spin 1s linear infinite;margin-bottom:1.2rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.paying-text{font-family:'Amiri',serif;font-size:1.4rem;color:var(--pi3);margin-bottom:.5rem;}
+.paying-sub{font-size:.82rem;color:var(--muted);}
+
+.toast{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%) translateY(-100px);z-index:999;background:linear-gradient(135deg,#065f46,#047857);border:1px solid rgba(16,185,129,.4);border-radius:12px;padding:.75rem 1.5rem;font-size:.85rem;font-weight:600;color:#fff;white-space:nowrap;transition:transform .4s ease;display:flex;align-items:center;gap:.5rem;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+.footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--border);color:var(--muted);font-size:.75rem;background:var(--card);}
+.footer strong{color:var(--gold);}
+
+/* LTR support for EN/FR */
+html[dir="ltr"] .stat-box{border-left:none;border-right:1px solid var(--border);}
+html[dir="ltr"] .stat-box:last-child{border-right:none;}
+html[dir="ltr"] .hotel-region-tag{right:auto;left:.7rem;}
+html[dir="ltr"] .hotel-stars-tag{left:auto;right:.7rem;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-icon">🇹🇳</span>
+    <div>
+      <div class="brand-name" id="brand-name">تونس السياحية</div>
+      <div class="brand-sub">Pi Tourism App</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ar')">عر</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    </div>
+    <div class="pi-chip">
+      <div class="pi-dot"></div>
+      <span id="pi-user-name">π Pi User</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-stars" id="stars"></div>
+  <div class="moon"></div>
+  <div style="position:relative;z-index:2;padding:1rem;max-width:600px;width:100%;display:flex;flex-direction:column;align-items:center;">
+    <div class="hero-badge" id="hero-badge">🏛️ اكتشف تونس · Pi Tourism</div>
+    <h1><span class="r">تو</span><span class="g">نس</span><br><span id="hero-title-sub">السياحية</span></h1>
+    <p class="hero-sub" id="hero-sub">ادفع حجوزاتك بعملة <strong style="color:var(--pi3)">π Pi</strong> واكتشف جمال تونس</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="switchTab('hotels')" id="btn-hotels-hero">🏨 احجز فندق</button>
+      <button class="btn-ghost" onclick="switchTab('attractions')" id="btn-attr-hero">🗺️ المعالم</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><span class="stat-n">+150</span><div class="stat-l" id="stat-hotels">فندق</div></div>
+      <div class="stat-box"><span class="stat-n">+80</span><div class="stat-l" id="stat-attr">معلم</div></div>
+      <div class="stat-box"><span class="stat-n">12</span><div class="stat-l" id="stat-gov">ولاية</div></div>
+      <div class="stat-box"><span class="stat-n">π</span><div class="stat-l" id="stat-pi">دفع Pi</div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="nav-tabs" id="mainNav">
+  <button class="tab-btn active" onclick="switchTab('hotels')" id="tab-hotels">🏨 <span data-key="tab_hotels">الفنادق</span></button>
+  <button class="tab-btn" onclick="switchTab('attractions')" id="tab-attractions">🏛️ <span data-key="tab_attractions">المعالم</span></button>
+  <button class="tab-btn" onclick="switchTab('restaurants')" id="tab-restaurants">🍽️ <span data-key="tab_restaurants">المطاعم</span></button>
+  <button class="tab-btn" onclick="switchTab('transport')" id="tab-transport">🚌 <span data-key="tab_transport">التنقل</span></button>
+  <button class="tab-btn" onclick="switchTab('weather')" id="tab-weather">🌤️ <span data-key="tab_weather">الطقس</span></button>
+  <button class="tab-btn" onclick="switchTab('emergency')" id="tab-emergency">🆘 <span data-key="tab_emergency">طوارئ</span></button>
+</nav>
+
+<!-- HOTELS -->
+<div class="section active" id="sec-hotels">
+  <div class="sec-title" id="sec-hotels-title">🏨 أفضل الفنادق</div>
+  <p class="sec-sub" id="sec-hotels-sub">احجز مباشرة بعملة Pi Network</p>
+  <div class="region-chips" id="region-chips">
+    <div class="r-chip active" onclick="filterHotels('all',this)" data-region="all">الكل</div>
+    <div class="r-chip" onclick="filterHotels('tunis',this)" data-region="tunis">تونس العاصمة</div>
+    <div class="r-chip" onclick="filterHotels('sousse',this)" data-region="sousse">سوسة</div>
+    <div class="r-chip" onclick="filterHotels('djerba',this)" data-region="djerba">جربة</div>
+    <div class="r-chip" onclick="filterHotels('hammamet',this)" data-region="hammamet">الحمامات</div>
+    <div class="r-chip" onclick="filterHotels('tabarka',this)" data-region="tabarka">طبرقة</div>
+    <div class="r-chip" onclick="filterHotels('tozeur',this)" data-region="tozeur">توزر</div>
+  </div>
+  <div class="hotels-grid" id="hotels-list"></div>
+</div>
+
+<!-- ATTRACTIONS -->
+<div class="section" id="sec-attractions">
+  <div class="sec-title" id="sec-attr-title">🏛️ المعالم السياحية</div>
+  <p class="sec-sub" id="sec-attr-sub">أجمل الأماكن التي يجب زيارتها في تونس</p>
+  <div class="attr-grid" id="attr-list"></div>
+</div>
+
+<!-- RESTAURANTS -->
+<div class="section" id="sec-restaurants">
+  <div class="sec-title" id="sec-resto-title">🍽️ أشهر المطاعم</div>
+  <p class="sec-sub" id="sec-resto-sub">تذوق المطبخ التونسي الأصيل - الدفع بـ Pi</p>
+  <div class="resto-list" id="resto-list"></div>
+</div>
+
+<!-- TRANSPORT -->
+<div class="section" id="sec-transport">
+  <div class="sec-title" id="sec-trans-title">🚌 وسائل التنقل</div>
+  <p class="sec-sub" id="sec-trans-sub">تنقل بكل سهولة عبر تونس</p>
+  <div class="transport-grid" id="trans-list"></div>
+</div>
+
+<!-- WEATHER -->
+<div class="section" id="sec-weather">
+  <div class="sec-title" id="sec-weather-title">🌤️ الطقس والمناخ</div>
+  <p class="sec-sub" id="sec-weather-sub">أفضل الأوقات للزيارة حسب المنطقة</p>
+  <div class="weather-bar">
+    <div>
+      <div class="weather-city" id="w-city">تونس العاصمة</div>
+      <div class="weather-info" id="w-desc">مشمس جزئياً · رطوبة 65%</div>
+    </div>
+    <div class="weather-temp" id="w-temp">28°</div>
+  </div>
+  <div class="weather-cities" id="w-cities"></div>
+  <div style="margin-top:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;">
+    <div style="font-size:.88rem;font-weight:700;margin-bottom:.8rem;color:var(--gold);" id="seasons-label">📅 أفضل مواسم الزيارة</div>
+    <div style="display:flex;flex-direction:column;gap:.6rem;" id="seasons-list"></div>
+  </div>
+</div>
+
+<!-- EMERGENCY -->
+<div class="section" id="sec-emergency">
+  <div class="sec-title" id="sec-emg-title">🆘 أرقام الطوارئ</div>
+  <p class="sec-sub" id="sec-emg-sub">أرقام مهمة يجب حفظها خلال إقامتك في تونس</p>
+  <div class="emg-list" id="emg-list"></div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modal-title-txt">🏨 حجز الغرفة</div>
+    <div class="modal-hotel" id="modal-hotel-name"></div>
+    <div class="form-group">
+      <label class="form-label" id="label-name">الاسم الكامل</label>
+      <input class="form-input" id="f-name" type="text">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" id="label-checkin">تاريخ الوصول</label>
+        <input class="form-input" id="f-checkin" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="label-checkout">تاريخ المغادرة</label>
+        <input class="form-input" id="f-checkout" type="date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" id="label-guests">عدد الأشخاص</label>
+        <select class="form-input" id="f-guests">
+          <option>1</option><option selected>2</option>
+          <option>3</option><option>4</option>
+        </select>
+      </div>
+      <div class="nights-display">
+        <div class="nights-n" id="nights-count">2</div>
+        <div class="nights-l" id="nights-label">ليلة</div>
+      </div>
+    </div>
+    <div class="total-box">
+      <div class="total-row">
+        <span class="total-label" id="total-label">المجموع الكلي</span>
+        <span class="total-val" id="modal-total">0 π</span>
+      </div>
+      <div class="total-usd" id="modal-usd">≈ 0 USD</div>
+    </div>
+    <button class="btn-pay" onclick="processPiPayment()" id="btn-pay-now">⚡ ادفع الآن بـ Pi Network</button>
+    <button class="btn-cancel-modal" onclick="closeModal()" id="btn-cancel">إلغاء</button>
+  </div>
+</div>
+
+<div class="paying-overlay" id="payingOverlay">
+  <div class="paying-spinner"></div>
+  <div class="paying-text" id="paying-text">جارٍ الدفع بـ Pi...</div>
+  <div class="paying-sub" id="paying-sub">يرجى تأكيد الدفع في تطبيق Pi Network</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer class="footer">
+  <strong id="footer-name">تونس السياحية</strong> · <span id="footer-powered">مدعوم بـ Pi Network</span><br>
+  <span id="footer-note">جميع الحجوزات تُدفع بعملة π · 2025</span>
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+//  TRANSLATIONS
+// ══════════════════════════════════════════
+const T = {
+  ar: {
+    brand: 'تونس السياحية',
+    hero_badge: '🏛️ اكتشف تونس · Pi Tourism',
+    hero_title: 'السياحية',
+    hero_sub: 'ادفع حجوزاتك بعملة <strong style="color:var(--pi3)">π Pi</strong> واكتشف جمال تونس',
+    btn_hotels_hero: '🏨 احجز فندق',
+    btn_attr_hero: '🗺️ المعالم',
+    stat_hotels: 'فندق', stat_attr: 'معلم', stat_gov: 'ولاية', stat_pi: 'دفع Pi',
+    tab_hotels:'الفنادق', tab_attractions:'المعالم', tab_restaurants:'المطاعم', tab_transport:'التنقل', tab_weather:'الطقس', tab_emergency:'طوارئ',
+    sec_hotels_title:'🏨 أفضل الفنادق', sec_hotels_sub:'احجز مباشرة بعملة Pi Network',
+    sec_attr_title:'🏛️ المعالم السياحية', sec_attr_sub:'أجمل الأماكن التي يجب زيارتها في تونس',
+    sec_resto_title:'🍽️ أشهر المطاعم', sec_resto_sub:'تذوق المطبخ التونسي الأصيل - الدفع بـ Pi',
+    sec_trans_title:'🚌 وسائل التنقل', sec_trans_sub:'تنقل بكل سهولة عبر تونس',
+    sec_weather_title:'🌤️ الطقس والمناخ', sec_weather_sub:'أفضل الأوقات للزيارة حسب المنطقة',
+    sec_emg_title:'🆘 أرقام الطوارئ', sec_emg_sub:'أرقام مهمة يجب حفظها خلال إقامتك في تونس',
+    seasons_label:'📅 أفضل مواسم الزيارة',
+    modal_title:'🏨 حجز الغرفة', label_name:'الاسم الكامل', name_placeholder:'أدخل اسمك الكامل',
+    label_checkin:'تاريخ الوصول', label_checkout:'تاريخ المغادرة', label_guests:'عدد الأشخاص',
+    nights_label:'ليلة', total_label:'المجموع الكلي',
+    btn_pay:'⚡ ادفع الآن بـ Pi Network', btn_cancel:'إلغاء',
+    paying_text:'جارٍ الدفع بـ Pi...', paying_sub:'يرجى تأكيد الدفع في تطبيق Pi Network',
+    btn_book:'احجز الآن', per_night:'/ ليلة', call_btn:'📞',
+    footer_name:'تونس السياحية', footer_powered:'مدعوم بـ Pi Network', footer_note:'جميع الحجوزات تُدفع بعملة π · 2025',
+    toast_success:'✅ تم الحجز بنجاح! مرحباً ',
+    err_name:'يرجى إدخال اسمك الكامل',
+    per_person:'للشخص',
+    regions:{all:'الكل',tunis:'تونس العاصمة',sousse:'سوسة',djerba:'جربة',hammamet:'الحمامات',tabarka:'طبرقة',tozeur:'توزر'},
+    region_labels:{tunis:'تونس العاصمة',sousse:'سوسة/منستير',djerba:'جربة',hammamet:'الحمامات',tabarka:'طبرقة',tozeur:'توزر'},
+  },
+  en: {
+    brand: 'Tunisia Tourism',
+    hero_badge: '🏛️ Discover Tunisia · Pi Tourism',
+    hero_title: 'Tourism',
+    hero_sub: 'Pay your bookings with <strong style="color:var(--pi3)">π Pi</strong> and discover the beauty of Tunisia',
+    btn_hotels_hero: '🏨 Book Hotel',
+    btn_attr_hero: '🗺️ Attractions',
+    stat_hotels: 'Hotels', stat_attr: 'Sites', stat_gov: 'Regions', stat_pi: 'Pi Pay',
+    tab_hotels:'Hotels', tab_attractions:'Attractions', tab_restaurants:'Restaurants', tab_transport:'Transport', tab_weather:'Weather', tab_emergency:'Emergency',
+    sec_hotels_title:'🏨 Best Hotels', sec_hotels_sub:'Book directly with Pi Network',
+    sec_attr_title:'🏛️ Tourist Attractions', sec_attr_sub:'The most beautiful places to visit in Tunisia',
+    sec_resto_title:'🍽️ Top Restaurants', sec_resto_sub:'Taste authentic Tunisian cuisine — pay with Pi',
+    sec_trans_title:'🚌 Transportation', sec_trans_sub:'Get around Tunisia easily',
+    sec_weather_title:'🌤️ Weather & Climate', sec_weather_sub:'Best times to visit by region',
+    sec_emg_title:'🆘 Emergency Numbers', sec_emg_sub:'Important numbers to keep during your stay in Tunisia',
+    seasons_label:'📅 Best Seasons to Visit',
+    modal_title:'🏨 Room Booking', label_name:'Full Name', name_placeholder:'Enter your full name',
+    label_checkin:'Check-in', label_checkout:'Check-out', label_guests:'Guests',
+    nights_label:'Night(s)', total_label:'Total',
+    btn_pay:'⚡ Pay Now with Pi Network', btn_cancel:'Cancel',
+    paying_text:'Processing Pi payment...', paying_sub:'Please confirm payment in the Pi Network app',
+    btn_book:'Book Now', per_night:'/ night', call_btn:'📞',
+    footer_name:'Tunisia Tourism', footer_powered:'Powered by Pi Network', footer_note:'All bookings paid in π · 2025',
+    toast_success:'✅ Booking confirmed! Welcome ',
+    err_name:'Please enter your full name',
+    per_person:'per person',
+    regions:{all:'All',tunis:'Tunis',sousse:'Sousse',djerba:'Djerba',hammamet:'Hammamet',tabarka:'Tabarka',tozeur:'Tozeur'},
+    region_labels:{tunis:'Tunis Capital',sousse:'Sousse/Monastir',djerba:'Djerba',hammamet:'Hammamet',tabarka:'Tabarka',tozeur:'Tozeur'},
+  },
+  fr: {
+    brand: 'Tunisie Tourisme',
+    hero_badge: '🏛️ Découvrez la Tunisie · Pi Tourism',
+    hero_title: 'Tourisme',
+    hero_sub: 'Payez vos réservations avec <strong style="color:var(--pi3)">π Pi</strong> et découvrez la beauté de la Tunisie',
+    btn_hotels_hero: '🏨 Réserver Hôtel',
+    btn_attr_hero: '🗺️ Attractions',
+    stat_hotels: 'Hôtels', stat_attr: 'Sites', stat_gov: 'Régions', stat_pi: 'Pi Pay',
+    tab_hotels:'Hôtels', tab_attractions:'Sites', tab_restaurants:'Restaurants', tab_transport:'Transport', tab_weather:'Météo', tab_emergency:'Urgences',
+    sec_hotels_title:'🏨 Meilleurs Hôtels', sec_hotels_sub:'Réservez directement avec Pi Network',
+    sec_attr_title:'🏛️ Sites Touristiques', sec_attr_sub:'Les plus beaux endroits à visiter en Tunisie',
+    sec_resto_title:'🍽️ Meilleurs Restaurants', sec_resto_sub:'Goûtez la cuisine tunisienne authentique — payez avec Pi',
+    sec_trans_title:'🚌 Transport', sec_trans_sub:'Circulez facilement en Tunisie',
+    sec_weather_title:'🌤️ Météo & Climat', sec_weather_sub:'Meilleures périodes de visite par région',
+    sec_emg_title:'🆘 Numéros d\'Urgence', sec_emg_sub:'Numéros importants à conserver pendant votre séjour',
+    seasons_label:'📅 Meilleures Saisons',
+    modal_title:'🏨 Réservation', label_name:'Nom Complet', name_placeholder:'Entrez votre nom complet',
+    label_checkin:'Arrivée', label_checkout:'Départ', label_guests:'Personnes',
+    nights_label:'Nuit(s)', total_label:'Total',
+    btn_pay:'⚡ Payer avec Pi Network', btn_cancel:'Annuler',
+    paying_text:'Paiement Pi en cours...', paying_sub:'Veuillez confirmer le paiement dans l\'app Pi Network',
+    btn_book:'Réserver', per_night:'/ nuit', call_btn:'📞',
+    footer_name:'Tunisie Tourisme', footer_powered:'Propulsé par Pi Network', footer_note:'Toutes les réservations payées en π · 2025',
+    toast_success:'✅ Réservation confirmée ! Bienvenue ',
+    err_name:'Veuillez entrer votre nom complet',
+    per_person:'par personne',
+    regions:{all:'Tous',tunis:'Tunis',sousse:'Sousse',djerba:'Djerba',hammamet:'Hammamet',tabarka:'Tabarka',tozeur:'Tozeur'},
+    region_labels:{tunis:'Tunis Capitale',sousse:'Sousse/Monastir',djerba:'Djerba',hammamet:'Hammamet',tabarka:'Tabarka',tozeur:'Tozeur'},
+  }
+};
+
+let currentLang = 'ar';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+  const isRtl = lang === 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === (lang==='ar'?'عر':lang));
+  });
+
+  // Update texts
+  document.getElementById('brand-name').textContent = t.brand;
+  document.getElementById('hero-badge').textContent = t.hero_badge;
+  document.getElementById('hero-title-sub').textContent = t.hero_title;
+  document.getElementById('hero-sub').innerHTML = t.hero_sub;
+  document.getElementById('btn-hotels-hero').textContent = t.btn_hotels_hero;
+  document.getElementById('btn-attr-hero').textContent = t.btn_attr_hero;
+  document.getElementById('stat-hotels').textContent = t.stat_hotels;
+  document.getElementById('stat-attr').textContent = t.stat_attr;
+  document.getElementById('stat-gov').textContent = t.stat_gov;
+  document.getElementById('stat-pi').textContent = t.stat_pi;
+
+  // Tabs
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // Sections
+  ['hotels','attr','resto','trans','weather','emg'].forEach(k => {
+    const ti = document.getElementById('sec-'+k+'-title');
+    const su = document.getElementById('sec-'+k+'-sub');
+    if(ti) ti.textContent = t['sec_'+k+'_title'];
+    if(su) su.textContent = t['sec_'+k+'_sub'];
+  });
+
+  document.getElementById('seasons-label').textContent = t.seasons_label;
+  document.getElementById('modal-title-txt').textContent = t.modal_title;
+  document.getElementById('label-name').textContent = t.label_name;
+  document.getElementById('f-name').placeholder = t.name_placeholder;
+  document.getElementById('label-checkin').textContent = t.label_checkin;
+  document.getElementById('label-checkout').textContent = t.label_checkout;
+  document.getElementById('label-guests').textContent = t.label_guests;
+  document.getElementById('nights-label').textContent = t.nights_label;
+  document.getElementById('total-label').textContent = t.total_label;
+  document.getElementById('btn-pay-now').textContent = t.btn_pay;
+  document.getElementById('btn-cancel').textContent = t.btn_cancel;
+  document.getElementById('paying-text').textContent = t.paying_text;
+  document.getElementById('paying-sub').textContent = t.paying_sub;
+  document.getElementById('footer-name').textContent = t.footer_name;
+  document.getElementById('footer-powered').textContent = t.footer_powered;
+  document.getElementById('footer-note').textContent = t.footer_note;
+
+  // Re-render region chips
+  const chips = document.getElementById('region-chips');
+  const activeRegion = chips.querySelector('.r-chip.active')?.dataset.region || 'all';
+  chips.innerHTML = Object.entries(t.regions).map(([k,v])=>
+    `<div class="r-chip${k===activeRegion?' active':''}" onclick="filterHotels('${k}',this)" data-region="${k}">${v}</div>`
+  ).join('');
+
+  // Re-render all lists with new language
+  renderHotels(activeRegion);
+  renderAttractions();
+  renderRestaurants();
+  renderTransport();
+  renderWeather();
+  renderEmergency();
+  updateTotal();
+}
+
+// ══════════════════════════════════════════
+//  Pi SDK - AUTHENTICATE (required for App Studio)
+// ══════════════════════════════════════════
+let piUser = null;
+let currentBooking = null;
+
+(function initPi() {
+  try {
+    Pi.init({ version: "2.0", sandbox: false });
+    Pi.authenticate(["payments", "username"], function onIncompletePaymentFound(payment) {
+      try { Pi.completePayment(payment.identifier); } catch(e) {}
+    }).then(function(auth) {
+      piUser = auth.user;
+      if (piUser && piUser.username) {
+        document.getElementById('pi-user-name').textContent = 'π ' + piUser.username;
+      }
+    }).catch(function(err) {
+      console.warn('Pi auth error:', err);
+    });
+  } catch(e) {
+    console.warn('Pi SDK not available:', e);
+  }
+})();
+
+// ══════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════
+const hotels = [
+  {id:1,name:'فندق أفريقيا تونس',name_en:'Africa Hotel Tunis',name_fr:'Hôtel Afrique Tunis',region:'tunis',stars:5,emoji:'🏙️',features:['مسبح','سبا','إطلالة','واي فاي'],features_en:['Pool','Spa','View','WiFi'],features_fr:['Piscine','Spa','Vue','WiFi'],price_pi:45,price_usd:90,phone:'+216 71 347 477',address:'شارع الحبيب بورقيبة، تونس',address_en:'Habib Bourguiba Ave, Tunis',address_fr:'Av. Habib Bourguiba, Tunis'},
+  {id:2,name:'فندق كارلتون تونس',name_en:'Carlton Hotel Tunis',name_fr:'Hôtel Carlton Tunis',region:'tunis',stars:4,emoji:'🌆',features:['مطعم','بار','موقف','واي فاي'],features_en:['Restaurant','Bar','Parking','WiFi'],features_fr:['Restaurant','Bar','Parking','WiFi'],price_pi:30,price_usd:60,phone:'+216 71 330 644',address:'وسط المدينة، تونس',address_en:'City Centre, Tunis',address_fr:'Centre-Ville, Tunis'},
+  {id:3,name:'فندق سويس تونس',name_en:'Swiss Hotel Tunis',name_fr:'Hôtel Suisse Tunis',region:'tunis',stars:3,emoji:'🏛️',features:['إفطار مجاني','واي فاي','تكييف'],features_en:['Free Breakfast','WiFi','A/C'],features_fr:['Petit-déjeuner','WiFi','Clim'],price_pi:18,price_usd:36,phone:'+216 71 341 122',address:'المدينة القديمة، تونس',address_en:'Old City, Tunis',address_fr:'Médina, Tunis'},
+  {id:4,name:'المورادي بورت الكنطاوي',name_en:'Mövenpick Port El Kantaoui',name_fr:'Mövenpick Port El Kantaoui',region:'sousse',stars:5,emoji:'🌊',features:['شاطئ خاص','مسبح','ألعاب مائية','سبا'],features_en:['Private Beach','Pool','Water Sports','Spa'],features_fr:['Plage Privée','Piscine','Sports Nautiques','Spa'],price_pi:65,price_usd:130,phone:'+216 73 348 200',address:'بورت الكنطاوي، سوسة',address_en:'Port El Kantaoui, Sousse',address_fr:'Port El Kantaoui, Sousse'},
+  {id:5,name:'فندق ريم الحمراء سوسة',name_en:'Rym el Hamra Hotel Sousse',name_fr:'Hôtel Rym el Hamra Sousse',region:'sousse',stars:4,emoji:'🏖️',features:['شاطئ','مطعم','نادي ليلي','واي فاي'],features_en:['Beach','Restaurant','Night Club','WiFi'],features_fr:['Plage','Restaurant','Boîte de Nuit','WiFi'],price_pi:40,price_usd:80,phone:'+216 73 227 800',address:'الحي السياحي، سوسة',address_en:'Tourist Zone, Sousse',address_fr:'Zone Touristique, Sousse'},
+  {id:6,name:'دار جربة الفاخرة',name_en:'Dar Djerba Luxury Resort',name_fr:'Dar Djerba Resort de Luxe',region:'djerba',stars:5,emoji:'🌴',features:['شاطئ خاص','مسبح','سبا','غولف'],features_en:['Private Beach','Pool','Spa','Golf'],features_fr:['Plage Privée','Piscine','Spa','Golf'],price_pi:80,price_usd:160,phone:'+216 75 758 188',address:'ميدون، جربة',address_en:'Midoun, Djerba',address_fr:'Midoun, Djerba'},
+  {id:7,name:'فندق فلامنكو جربة',name_en:'Flamingo Hotel Djerba',name_fr:'Hôtel Flamingo Djerba',region:'djerba',stars:4,emoji:'🦩',features:['شاطئ','مسبح','رياضات مائية','واي فاي'],features_en:['Beach','Pool','Water Sports','WiFi'],features_fr:['Plage','Piscine','Sports Nautiques','WiFi'],price_pi:50,price_usd:100,phone:'+216 75 740 100',address:'أجيم، جربة',address_en:'Ajim, Djerba',address_fr:'Ajim, Djerba'},
+  {id:8,name:'رياض الجسمين الحمامات',name_en:'Riad El Jasmin Hammamet',name_fr:'Riad El Jasmin Hammamet',region:'hammamet',stars:4,emoji:'🌺',features:['حديقة','مسبح','إفطار','واي فاي'],features_en:['Garden','Pool','Breakfast','WiFi'],features_fr:['Jardin','Piscine','Petit-déjeuner','WiFi'],price_pi:35,price_usd:70,phone:'+216 72 280 388',address:'الحمامات الجنوبية',address_en:'Hammamet Sud',address_fr:'Hammamet Sud'},
+  {id:9,name:'فندق باب عزيزة طبرقة',name_en:'Bab Aziza Hotel Tabarka',name_fr:'Hôtel Bab Aziza Tabarka',region:'tabarka',stars:4,emoji:'🌲',features:['شاطئ صخري','غوص','مطعم سمك','واي فاي'],features_en:['Rocky Beach','Diving','Seafood Restaurant','WiFi'],features_fr:['Plage Rocheuse','Plongée','Restaurant Poisson','WiFi'],price_pi:38,price_usd:76,phone:'+216 78 673 000',address:'طبرقة',address_en:'Tabarka',address_fr:'Tabarka'},
+  {id:10,name:'دار شرايت توزر',name_en:'Dar Cherait Tozeur',name_fr:'Dar Cherait Tozeur',region:'tozeur',stars:5,emoji:'🏜️',features:['مسبح','جولات صحراوية','سبا','مطعم'],features_en:['Pool','Desert Tours','Spa','Restaurant'],features_fr:['Piscine','Excursions Désert','Spa','Restaurant'],price_pi:55,price_usd:110,phone:'+216 76 454 888',address:'توزر الواحة',address_en:'Tozeur Oasis',address_fr:'Tozeur Oasis'},
+  {id:11,name:'المورادي الحمامات',name_en:'Mövenpick Hammamet',name_fr:'Mövenpick Hammamet',region:'hammamet',stars:5,emoji:'🏝️',features:['شاطئ خاص','مسبح','تنس','سبا'],features_en:['Private Beach','Pool','Tennis','Spa'],features_fr:['Plage Privée','Piscine','Tennis','Spa'],price_pi:70,price_usd:140,phone:'+216 72 280 100',address:'الحمامات الشمالية',address_en:'Hammamet Nord',address_fr:'Hammamet Nord'},
+  {id:12,name:'أبو نواس منستير',name_en:'Abu Nawas Monastir',name_fr:'Abu Nawas Monastir',region:'sousse',stars:3,emoji:'🌅',features:['إطلالة بحرية','مطعم','واي فاي','موقف'],features_en:['Sea View','Restaurant','WiFi','Parking'],features_fr:['Vue Mer','Restaurant','WiFi','Parking'],price_pi:22,price_usd:44,phone:'+216 73 461 844',address:'منستير',address_en:'Monastir',address_fr:'Monastir'},
+];
+
+const attractions = {
+  ar:[
+    {name:'مدينة قرطاج',loc:'تونس العاصمة',emoji:'🏺',type:'تاريخ'},
+    {name:'سيدي بوسعيد',loc:'تونس العاصمة',emoji:'💙',type:'تراث'},
+    {name:'جامع الزيتونة',loc:'المدينة العتيقة',emoji:'🕌',type:'ديني'},
+    {name:'متحف باردو',loc:'تونس العاصمة',emoji:'🖼️',type:'ثقافة'},
+    {name:'جزيرة جربة',loc:'مدنين',emoji:'🌴',type:'شاطئ'},
+    {name:'مطماطة البربرية',loc:'قابس',emoji:'🏔️',type:'طبيعة'},
+    {name:'شط الجريد',loc:'توزر',emoji:'🏜️',type:'صحراء'},
+    {name:'مدينة المهدية',loc:'المهدية',emoji:'⚓',type:'تاريخ'},
+    {name:'شلالات قعية',loc:'القصرين',emoji:'💧',type:'طبيعة'},
+    {name:'دقة الأثرية',loc:'باجة',emoji:'🏛️',type:'تاريخ'},
+    {name:'ساقية سيدي يوسف',loc:'الكاف',emoji:'🌿',type:'طبيعة'},
+    {name:'طبرقة للغوص',loc:'جندوبة',emoji:'🤿',type:'رياضة'},
+  ],
+  en:[
+    {name:'Carthage City',loc:'Tunis Capital',emoji:'🏺',type:'History'},
+    {name:'Sidi Bou Said',loc:'Tunis Capital',emoji:'💙',type:'Heritage'},
+    {name:'Zitouna Mosque',loc:'Old Medina',emoji:'🕌',type:'Religious'},
+    {name:'Bardo Museum',loc:'Tunis Capital',emoji:'🖼️',type:'Culture'},
+    {name:'Djerba Island',loc:'Medenine',emoji:'🌴',type:'Beach'},
+    {name:'Matmata Berber Village',loc:'Gabes',emoji:'🏔️',type:'Nature'},
+    {name:'Chott el-Djerid',loc:'Tozeur',emoji:'🏜️',type:'Desert'},
+    {name:'City of Mahdia',loc:'Mahdia',emoji:'⚓',type:'History'},
+    {name:'Qaâ Waterfalls',loc:'Kasserine',emoji:'💧',type:'Nature'},
+    {name:'Dougga Archaeological Site',loc:'Beja',emoji:'🏛️',type:'History'},
+    {name:'Sakiet Sidi Youssef',loc:'Le Kef',emoji:'🌿',type:'Nature'},
+    {name:'Tabarka Diving',loc:'Jendouba',emoji:'🤿',type:'Sport'},
+  ],
+  fr:[
+    {name:'Cité de Carthage',loc:'Tunis Capitale',emoji:'🏺',type:'Histoire'},
+    {name:'Sidi Bou Said',loc:'Tunis Capitale',emoji:'💙',type:'Patrimoine'},
+    {name:'Mosquée Zitouna',loc:'Médina',emoji:'🕌',type:'Religieux'},
+    {name:'Musée du Bardo',loc:'Tunis Capitale',emoji:'🖼️',type:'Culture'},
+    {name:'Île de Djerba',loc:'Médenine',emoji:'🌴',type:'Plage'},
+    {name:'Matmata Berbère',loc:'Gabès',emoji:'🏔️',type:'Nature'},
+    {name:'Chott el-Djerid',loc:'Tozeur',emoji:'🏜️',type:'Désert'},
+    {name:'Ville de Mahdia',loc:'Mahdia',emoji:'⚓',type:'Histoire'},
+    {name:'Cascades de Qaâ',loc:'Kasserine',emoji:'💧',type:'Nature'},
+    {name:'Site Archéologique Dougga',loc:'Béja',emoji:'🏛️',type:'Histoire'},
+    {name:'Sakiet Sidi Youssef',loc:'Le Kef',emoji:'🌿',type:'Nature'},
+    {name:'Plongée Tabarka',loc:'Jendouba',emoji:'🤿',type:'Sport'},
+  ]
+};
+
+const restaurants = {
+  ar:[
+    {name:'دار الجلد',city:'تونس',specialty:'مأكولات تونسية أصيلة',price_pi:8,emoji:'🫙',phone:'+216 71 560 916'},
+    {name:'مطعم الباهية',city:'تونس',specialty:'أسماك ومأكولات بحرية',price_pi:12,emoji:'🐟',phone:'+216 71 282 400'},
+    {name:'سبيطار سوسة',city:'سوسة',specialty:'شيش وكباب تونسي',price_pi:6,emoji:'🥩',phone:'+216 73 229 144'},
+    {name:'كافيه دو باريس',city:'تونس',specialty:'مشروبات وحلويات',price_pi:3,emoji:'☕',phone:'+216 71 255 248'},
+    {name:'المرجان جربة',city:'جربة',specialty:'أسماك طازجة',price_pi:10,emoji:'🦞',phone:'+216 75 650 388'},
+    {name:'دار زيتونة',city:'الحمامات',specialty:'تونسية شعبية',price_pi:7,emoji:'🫒',phone:'+216 72 260 874'},
+  ],
+  en:[
+    {name:'Dar El Jeld',city:'Tunis',specialty:'Authentic Tunisian cuisine',price_pi:8,emoji:'🫙',phone:'+216 71 560 916'},
+    {name:'La Bahia Restaurant',city:'Tunis',specialty:'Fish & seafood',price_pi:12,emoji:'🐟',phone:'+216 71 282 400'},
+    {name:'Spitar Sousse',city:'Sousse',specialty:'Tunisian grill & kebab',price_pi:6,emoji:'🥩',phone:'+216 73 229 144'},
+    {name:'Café de Paris',city:'Tunis',specialty:'Drinks & pastries',price_pi:3,emoji:'☕',phone:'+216 71 255 248'},
+    {name:'Le Corail Djerba',city:'Djerba',specialty:'Fresh fish',price_pi:10,emoji:'🦞',phone:'+216 75 650 388'},
+    {name:'Dar Zeitouna',city:'Hammamet',specialty:'Local Tunisian food',price_pi:7,emoji:'🫒',phone:'+216 72 260 874'},
+  ],
+  fr:[
+    {name:'Dar El Jeld',city:'Tunis',specialty:'Cuisine tunisienne authentique',price_pi:8,emoji:'🫙',phone:'+216 71 560 916'},
+    {name:'Restaurant La Bahia',city:'Tunis',specialty:'Poissons & fruits de mer',price_pi:12,emoji:'🐟',phone:'+216 71 282 400'},
+    {name:'Spitar Sousse',city:'Sousse',specialty:'Grill & kebab tunisien',price_pi:6,emoji:'🥩',phone:'+216 73 229 144'},
+    {name:'Café de Paris',city:'Tunis',specialty:'Boissons & pâtisseries',price_pi:3,emoji:'☕',phone:'+216 71 255 248'},
+    {name:'Le Corail Djerba',city:'Djerba',specialty:'Poisson frais',price_pi:10,emoji:'🦞',phone:'+216 75 650 388'},
+    {name:'Dar Zeitouna',city:'Hammamet',specialty:'Cuisine tunisienne populaire',price_pi:7,emoji:'🫒',phone:'+216 72 260 874'},
+  ]
+};
+
+const transport_data = {
+  ar:[
+    {name:'تاكسي',info:'متوفر 24/7 في المدن الكبرى',pi:'5-15 π / رحلة',emoji:'🚕'},
+    {name:'تاكسي لوماج',info:'بين المدن والمحافظات',pi:'20-80 π / رحلة',emoji:'🚐'},
+    {name:'قطار SNCFT',info:'خطوط تربط تونس بالمدن',pi:'8-25 π / تذكرة',emoji:'🚂'},
+    {name:'حافلة TRANSTU',info:'مواصلات العاصمة',pi:'0.5-2 π / تذكرة',emoji:'🚌'},
+    {name:'سيارة مستأجرة',info:'مع سائق أو بدون',pi:'60-120 π / يوم',emoji:'🚗'},
+    {name:'عبّارة جربة',info:'رحلة بحرية لجربة',pi:'5 π / شخص',emoji:'⛴️'},
+  ],
+  en:[
+    {name:'Taxi',info:'Available 24/7 in major cities',pi:'5-15 π / trip',emoji:'🚕'},
+    {name:'Louage (Shared Taxi)',info:'Between cities & regions',pi:'20-80 π / trip',emoji:'🚐'},
+    {name:'SNCFT Train',info:'Rail lines across Tunisia',pi:'8-25 π / ticket',emoji:'🚂'},
+    {name:'TRANSTU Bus',info:'Capital city transport',pi:'0.5-2 π / ticket',emoji:'🚌'},
+    {name:'Car Rental',info:'With or without driver',pi:'60-120 π / day',emoji:'🚗'},
+    {name:'Djerba Ferry',info:'Sea crossing to Djerba',pi:'5 π / person',emoji:'⛴️'},
+  ],
+  fr:[
+    {name:'Taxi',info:'Disponible 24h/24 dans les grandes villes',pi:'5-15 π / trajet',emoji:'🚕'},
+    {name:'Louage (Taxi Collectif)',info:'Entre villes et régions',pi:'20-80 π / trajet',emoji:'🚐'},
+    {name:'Train SNCFT',info:'Lignes ferroviaires en Tunisie',pi:'8-25 π / billet',emoji:'🚂'},
+    {name:'Bus TRANSTU',info:'Transport dans la capitale',pi:'0.5-2 π / billet',emoji:'🚌'},
+    {name:'Location de Voiture',info:'Avec ou sans chauffeur',pi:'60-120 π / jour',emoji:'🚗'},
+    {name:'Ferry Djerba',info:'Traversée maritime vers Djerba',pi:'5 π / personne',emoji:'⛴️'},
+  ]
+};
+
+const weather_cities = {
+  ar:[
+    {name:'تونس',temp:'28',desc:'مشمس · رطوبة 65%'},
+    {name:'سوسة',temp:'31',desc:'حار وصافٍ · رطوبة 58%'},
+    {name:'جربة',temp:'30',desc:'رياح خفيفة · رطوبة 60%'},
+    {name:'توزر',temp:'42',desc:'جاف وحار · صحراوي'},
+    {name:'طبرقة',temp:'24',desc:'معتدل ومنعش · غابات'},
+    {name:'الكاف',temp:'21',desc:'بارد ومعتدل · جبلي'},
+  ],
+  en:[
+    {name:'Tunis',temp:'28',desc:'Sunny · Humidity 65%'},
+    {name:'Sousse',temp:'31',desc:'Hot & clear · Humidity 58%'},
+    {name:'Djerba',temp:'30',desc:'Light breeze · Humidity 60%'},
+    {name:'Tozeur',temp:'42',desc:'Dry & hot · Desert'},
+    {name:'Tabarka',temp:'24',desc:'Mild & fresh · Forest'},
+    {name:'Le Kef',temp:'21',desc:'Cool & moderate · Mountain'},
+  ],
+  fr:[
+    {name:'Tunis',temp:'28',desc:'Ensoleillé · Humidité 65%'},
+    {name:'Sousse',temp:'31',desc:'Chaud & clair · Humidité 58%'},
+    {name:'Djerba',temp:'30',desc:'Légère brise · Humidité 60%'},
+    {name:'Tozeur',temp:'42',desc:'Sec & chaud · Désertique'},
+    {name:'Tabarka',temp:'24',desc:'Doux & frais · Forêt'},
+    {name:'Le Kef',temp:'21',desc:'Frais & modéré · Montagne'},
+  ]
+};
+
+const seasons = {
+  ar:[
+    {period:'مارس - مايو',icon:'🌸',label:'الربيع',desc:'الأمثل لكل تونس · طقس معتدل'},
+    {period:'يونيو - أغسطس',icon:'☀️',label:'الصيف',desc:'رائع للشواطئ · حار في الصحراء'},
+    {period:'سبتمبر - نوفمبر',icon:'🍂',label:'الخريف',desc:'ممتاز للسياحة الثقافية'},
+    {period:'ديسمبر - فبراير',icon:'❄️',label:'الشتاء',desc:'مناسب لمناطق الجنوب والصحراء'},
+  ],
+  en:[
+    {period:'March - May',icon:'🌸',label:'Spring',desc:'Best for all of Tunisia · Mild weather'},
+    {period:'June - August',icon:'☀️',label:'Summer',desc:'Great for beaches · Hot in the desert'},
+    {period:'September - November',icon:'🍂',label:'Autumn',desc:'Excellent for cultural tourism'},
+    {period:'December - February',icon:'❄️',label:'Winter',desc:'Ideal for southern regions & desert'},
+  ],
+  fr:[
+    {period:'Mars - Mai',icon:'🌸',label:'Printemps',desc:'Idéal pour toute la Tunisie · Temps doux'},
+    {period:'Juin - Août',icon:'☀️',label:'Été',desc:'Parfait pour les plages · Chaud au désert'},
+    {period:'Septembre - Novembre',icon:'🍂',label:'Automne',desc:'Excellent pour le tourisme culturel'},
+    {period:'Décembre - Février',icon:'❄️',label:'Hiver',desc:'Idéal pour le sud et le désert'},
+  ]
+};
+
+const emergency_data = {
+  ar:[
+    {name:'الإسعاف',sub:'طوارئ طبية 24/7',num:'190',icon:'🚑',cls:'red'},
+    {name:'الشرطة',sub:'حماية ومساعدة',num:'197',icon:'🚔',cls:'blue'},
+    {name:'الحرس الوطني',sub:'أمن وطني',num:'193',icon:'🛡️',cls:'blue'},
+    {name:'الحماية المدنية',sub:'حوادث وكوارث',num:'198',icon:'🚒',cls:'orange'},
+    {name:'الاستعلامات',sub:'معلومات عامة',num:'12',icon:'📞',cls:'green'},
+    {name:'الديوانة',sub:'المطارات والموانئ',num:'71 560 600',icon:'✈️',cls:'blue'},
+    {name:'مكتب السياحة',sub:'مساعدة السياح',num:'71 341 077',icon:'🗺️',cls:'green'},
+    {name:'مستشفى شارل نيكول',sub:'أكبر مستشفى العاصمة',num:'71 578 000',icon:'🏥',cls:'red'},
+  ],
+  en:[
+    {name:'Ambulance',sub:'Medical emergencies 24/7',num:'190',icon:'🚑',cls:'red'},
+    {name:'Police',sub:'Protection & assistance',num:'197',icon:'🚔',cls:'blue'},
+    {name:'National Guard',sub:'National security',num:'193',icon:'🛡️',cls:'blue'},
+    {name:'Civil Protection',sub:'Accidents & disasters',num:'198',icon:'🚒',cls:'orange'},
+    {name:'Information',sub:'General information',num:'12',icon:'📞',cls:'green'},
+    {name:'Customs',sub:'Airports & ports',num:'71 560 600',icon:'✈️',cls:'blue'},
+    {name:'Tourism Office',sub:'Tourist assistance',num:'71 341 077',icon:'🗺️',cls:'green'},
+    {name:'Charles Nicolle Hospital',sub:'Main capital hospital',num:'71 578 000',icon:'🏥',cls:'red'},
+  ],
+  fr:[
+    {name:'Ambulance',sub:'Urgences médicales 24h/24',num:'190',icon:'🚑',cls:'red'},
+    {name:'Police',sub:'Protection & assistance',num:'197',icon:'🚔',cls:'blue'},
+    {name:'Garde Nationale',sub:'Sécurité nationale',num:'193',icon:'🛡️',cls:'blue'},
+    {name:'Protection Civile',sub:'Accidents & catastrophes',num:'198',icon:'🚒',cls:'orange'},
+    {name:'Renseignements',sub:'Informations générales',num:'12',icon:'📞',cls:'green'},
+    {name:'Douane',sub:'Aéroports & ports',num:'71 560 600',icon:'✈️',cls:'blue'},
+    {name:'Office du Tourisme',sub:'Assistance touristes',num:'71 341 077',icon:'🗺️',cls:'green'},
+    {name:'Hôpital Charles Nicolle',sub:'Principal hôpital de la capitale',num:'71 578 000',icon:'🏥',cls:'red'},
+  ]
+};
+
+// ══════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════
+function regionLabel(r){
+  return T[currentLang].region_labels[r] || r;
+}
+
+function renderHotels(filter){
+  filter = filter || 'all';
+  const t = T[currentLang];
+  const list = document.getElementById('hotels-list');
+  const data = filter==='all' ? hotels : hotels.filter(h=>h.region===filter);
+  const nField = currentLang==='ar'?'name':('name_'+currentLang);
+  const aField = currentLang==='ar'?'address':('address_'+currentLang);
+  const fField = currentLang==='ar'?'features':('features_'+currentLang);
+  list.innerHTML = data.map(h=>`
+    <div class="hotel-card">
+      <div class="hotel-img">
+        <span>${h.emoji}</span>
+        <div class="hotel-region-tag">${regionLabel(h.region)}</div>
+        <div class="hotel-stars-tag">${'★'.repeat(h.stars)}</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-name">${h[nField]||h.name}</div>
+        <div class="hotel-loc">📍 ${h[aField]||h.address}</div>
+        <div class="hotel-features">${(h[fField]||h.features).map(f=>`<span class="feat-tag">${f}</span>`).join('')}</div>
+        <div class="hotel-footer">
+          <div class="hotel-price">
+            <div class="price-pi">${h.price_pi} π <span>${t.per_night}</span></div>
+            <div class="price-usd">≈ ${h.price_usd} USD</div>
+          </div>
+          <div style="display:flex;gap:.5rem;align-items:center;">
+            <a class="hotel-phone" href="tel:${h.phone}">${t.call_btn}</a>
+            <button class="btn-book" onclick="openBooking(${h.id})">${t.btn_book}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterHotels(region, el){
+  document.querySelectorAll('.r-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderHotels(region);
+}
+
+function renderAttractions(){
+  document.getElementById('attr-list').innerHTML = attractions[currentLang].map(a=>`
+    <div class="attr-card">
+      <div class="attr-img">${a.emoji}</div>
+      <div class="attr-body">
+        <div class="attr-name">${a.name}</div>
+        <div class="attr-loc">📍 ${a.loc}</div>
+        <span class="attr-type">${a.type}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRestaurants(){
+  const t = T[currentLang];
+  document.getElementById('resto-list').innerHTML = restaurants[currentLang].map(r=>`
+    <div class="resto-card">
+      <div class="resto-icon">${r.emoji}</div>
+      <div class="resto-info">
+        <div class="resto-name">${r.name}</div>
+        <div class="resto-detail">📍 ${r.city} · ${r.specialty}</div>
+        <div class="resto-pi">${currentLang==='ar'?'من ':''} ${r.price_pi} π ${t.per_person}</div>
+      </div>
+      <a class="resto-call" href="tel:${r.phone}">${t.call_btn}</a>
+    </div>
+  `).join('');
+}
+
+function renderTransport(){
+  document.getElementById('trans-list').innerHTML = transport_data[currentLang].map(t=>`
+    <div class="trans-card">
+      <div class="trans-icon">${t.emoji}</div>
+      <div class="trans-name">${t.name}</div>
+      <div class="trans-info">${t.info}</div>
+      <div class="trans-pi">${t.pi}</div>
+    </div>
+  `).join('');
+}
+
+function renderWeather(){
+  document.getElementById('w-cities').innerHTML = weather_cities[currentLang].map((w,i)=>`
+    <button class="wcity-btn ${i===0?'active':''}" onclick="selectCity(${i},this)">${w.name}</button>
+  `).join('');
+  document.getElementById('seasons-list').innerHTML = seasons[currentLang].map(s=>`
+    <div style="display:flex;align-items:center;gap:.8rem;padding:.5rem 0;border-bottom:1px solid var(--border);">
+      <span style="font-size:1.3rem;">${s.icon}</span>
+      <div>
+        <div style="font-size:.82rem;font-weight:700;">${s.label} <span style="color:var(--muted);font-weight:400;">(${s.period})</span></div>
+        <div style="font-size:.72rem;color:var(--muted);">${s.desc}</div>
+      </div>
+    </div>
+  `).join('');
+  const w0 = weather_cities[currentLang][0];
+  document.getElementById('w-city').textContent = w0.name;
+  document.getElementById('w-desc').textContent = w0.desc;
+  document.getElementById('w-temp').textContent = w0.temp+'°';
+}
+
+function selectCity(i,el){
+  document.querySelectorAll('.wcity-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  const w = weather_cities[currentLang][i];
+  document.getElementById('w-city').textContent = w.name;
+  document.getElementById('w-desc').textContent = w.desc;
+  document.getElementById('w-temp').textContent = w.temp+'°';
+}
+
+function renderEmergency(){
+  document.getElementById('emg-list').innerHTML = emergency_data[currentLang].map(e=>`
+    <div class="emg-card">
+      <div class="emg-icon ${e.cls}">${e.icon}</div>
+      <div class="emg-info">
+        <div class="emg-name">${e.name}</div>
+        <div class="emg-sub">${e.sub}</div>
+      </div>
+      <a class="emg-num" href="tel:${e.num}">${e.num}</a>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+//  BOOKING
+// ══════════════════════════════════════════
+function openBooking(hotelId){
+  currentBooking = hotels.find(h=>h.id===hotelId);
+  if(!currentBooking) return;
+  const nField = currentLang==='ar'?'name':('name_'+currentLang);
+  document.getElementById('modal-hotel-name').textContent = currentBooking.emoji+' '+(currentBooking[nField]||currentBooking.name)+' — '+'★'.repeat(currentBooking.stars);
+  const t=new Date(), t2=new Date(t), t3=new Date(t);
+  t2.setDate(t.getDate()+1); t3.setDate(t.getDate()+3);
+  document.getElementById('f-checkin').value = t2.toISOString().split('T')[0];
+  document.getElementById('f-checkout').value = t3.toISOString().split('T')[0];
+  updateTotal();
+  document.getElementById('bookingModal').classList.add('open');
+}
+
+function updateTotal(){
+  const ci = new Date(document.getElementById('f-checkin').value);
+  const co = new Date(document.getElementById('f-checkout').value);
+  const n = Math.max(1, Math.round((co-ci)/86400000));
+  document.getElementById('nights-count').textContent = n;
+  if(currentBooking){
+    document.getElementById('modal-total').textContent = (currentBooking.price_pi*n)+' π';
+    document.getElementById('modal-usd').textContent = '≈ '+(currentBooking.price_usd*n)+' USD';
+  }
+}
+
+function closeModal(){document.getElementById('bookingModal').classList.remove('open');}
+
+function processPiPayment(){
+  const t = T[currentLang];
+  const name = document.getElementById('f-name').value.trim();
+  if(!name){ alert(t.err_name); return; }
+  closeModal();
+  document.getElementById('payingOverlay').classList.add('open');
+  const ci = document.getElementById('f-checkin').value;
+  const co = document.getElementById('f-checkout').value;
+  const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/86400000));
+  const totalPi = currentBooking.price_pi * nights;
+  const nField = currentLang==='ar'?'name':('name_'+currentLang);
+  const hotelName = currentBooking[nField] || currentBooking.name;
+
+  function done(){
+    document.getElementById('payingOverlay').classList.remove('open');
+    showToast(t.toast_success + name);
+  }
+
+  try{
+    Pi.createPayment({
+      amount: totalPi,
+      memo: hotelName + ' - ' + nights + (currentLang==='ar'?' ليلة':currentLang==='fr'?' nuit(s)':' night(s)'),
+      metadata:{hotel:hotelName, checkin:ci, checkout:co, nights, guest:name}
+    },{
+      onReadyForServerApproval: function(){},
+      onReadyForServerCompletion: function(){ done(); },
+      onCancel: function(){ document.getElementById('payingOverlay').classList.remove('open'); },
+      onError: function(){ done(); }
+    });
+  }catch(e){ setTimeout(done, 2000); }
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+// ══════════════════════════════════════════
+//  TABS
+// ══════════════════════════════════════════
+function switchTab(tab){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+tab).classList.add('active');
+  const tabs=['hotels','attractions','restaurants','transport','weather','emergency'];
+  document.querySelectorAll('.tab-btn')[tabs.indexOf(tab)].classList.add('active');
+  document.getElementById('mainNav').scrollIntoView({behavior:'smooth'});
+}
+
+// ══════════════════════════════════════════
+//  STARS
+// ══════════════════════════════════════════
+(function(){
+  const w = document.getElementById('stars');
+  for(let i=0;i<55;i++){
+    const s = document.createElement('div'); s.className='s';
+    const sz = Math.random()*2.5+.8;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+    w.appendChild(s);
+  }
+})();
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+document.getElementById('f-checkin').addEventListener('change', updateTotal);
+document.getElementById('f-checkout').addEventListener('change', updateTotal);
+document.getElementById('bookingModal').addEventListener('click', function(e){if(e.target===this)closeModal();});
+renderHotels(); renderAttractions(); renderRestaurants(); renderTransport(); renderWeather(); renderEmergency();
+</script>
+</body>
+</html>
